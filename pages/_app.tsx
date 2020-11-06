@@ -1,7 +1,7 @@
 import { AppProps } from "next/app";
 import { ChakraProvider, localStorageManager } from "@chakra-ui/core";
 
-import "css/style.css";
+import "@/css/global.css";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
