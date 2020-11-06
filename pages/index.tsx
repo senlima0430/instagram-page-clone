@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/core'
 import { NormalLayout } from 'components/layout/Normal'
 import { UserProfile } from 'components/user/Profile'
 import { UserDescription } from 'components/user/Description'
@@ -9,8 +10,10 @@ export default function Index() {
   return (
     <NormalLayout>
       <UserProfile />
-      <UserDescription />
-      <InfoGroup />
+      <Box display={{ base: 'block', md: 'none' }}>
+        <UserDescription />
+        <InfoGroup />
+      </Box>
       <GenreGroup />
       <DisplayRow />
     </NormalLayout>

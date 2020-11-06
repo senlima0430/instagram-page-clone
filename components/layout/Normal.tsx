@@ -11,7 +11,12 @@ export function NormalLayout({ children }: PropsType) {
   return (
     <>
       <Navbar />
-      <Box w="100vw" mx={{ base: '0px' }}>
+      <Box
+        mx={{ base: 0, sm: 'auto' }}
+        p={{ base: 0, md: '30px 20px 0' }}
+        maxW="935px"
+        w={{ base: '100vw', md: 'calc(100vw - 40px)' }}
+      >
         {children}
       </Box>
     </>
