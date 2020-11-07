@@ -1,5 +1,15 @@
 import { useState } from 'react'
-import { GridItem, Box, Skeleton, Image } from '@chakra-ui/core'
+import {
+  GridItem,
+  Box,
+  Skeleton,
+  IconButton,
+  Image,
+  VStack,
+  Flex,
+  Text,
+} from '@chakra-ui/core'
+import { FiHeart, FiDownload } from 'react-icons/fi'
 
 type PropsType = {
   pic: Record<string, any>
@@ -7,9 +17,61 @@ type PropsType = {
 
 export function DisplayItem({ pic }: PropsType) {
   const [isLoaded, setLoaded] = useState<boolean>(false)
+  const [showAuthor, setShowAuthor] = useState<boolean>(false)
 
   return (
-    <GridItem pos="relative" w="100%" overflow="hidden">
+    <GridItem
+      pos="relative"
+      w="100%"
+      overflow="hidden"
+      onMouseEnter={() => setShowAuthor(true)}
+      onMouseLeave={() => setShowAuthor(false)}
+    >
+      <VStack
+        opacity={showAuthor ? 1 : 0}
+        pos="absolute"
+        top={0}
+        left={0}
+        zIndex={2}
+        w="100%"
+        h="100%"
+        p="0.5em"
+        color="white"
+        background="rgba(0,0,0,0.25)"
+      >
+        <Flex h="100%" align="center" justify="center">
+          <FiHeart /> {pic.likes}
+          <a
+            href={pic.links.download}
+            target="_blank"
+            rel="noreferrer"
+            download
+            style={{ marginLeft: '1em', display: 'block' }}
+          >
+            <IconButton
+              size=""
+              variant="unstyled"
+              aria-label="download picture"
+              icon={<FiDownload />}
+            />
+          </a>
+        </Flex>
+        <Text
+          pos="absolute"
+          left="0.5em"
+          bottom="0.5em"
+          fontSize={{ base: '12px', md: '1rem' }}
+        >
+          Photo by{' '}
+          <a
+            rel="noreferrer noopener"
+            href={pic.user.links.html}
+            style={{ color: 'white' }}
+          >
+            {pic.user.name ?? 'Unknown'}
+          </a>
+        </Text>
+      </VStack>
       <Box pb="100%" overflow="hidden">
         <Image
           pos="absolute"
