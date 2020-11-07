@@ -11,7 +11,7 @@ export function Navbar() {
   }
 
   return (
-    <Box as="nav" w="100vw" borderBottom="1px solid #dbdbdb">
+    <Box as="nav" w="100%" borderBottom="1px solid #dbdbdb">
       <Flex
         mx={{ base: 0, md: 'auto' }}
         px="20px"
