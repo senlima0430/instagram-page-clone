@@ -1,15 +1,27 @@
-import { Spinner, Box, SimpleGrid } from '@chakra-ui/core'
+import dynamic from 'next/dynamic'
 import { useScrollPosition } from '@n8tb1t/use-scroll-position'
+import { Spinner, Box, SimpleGrid, GridItem, Skeleton } from '@chakra-ui/core'
 
 import { usePaginatePics } from 'hooks/useRequests'
-import { DisplayItem } from './Item'
+
+const DisplayItem = dynamic(
+  async () => await (await import('./Item')).DisplayItem,
+  {
+    loading: () => (
+      <GridItem w="100%" pos="relative" overflow="hidden">
+        <Skeleton pos="absolute" top="0" left="0" w="100%" h="100%" />
+      </GridItem>
+    ),
+  }
+)
 
 export function DisplayArea() {
   const { pages, error, size, setSize, isReachingEnd } = usePaginatePics()
 
   useScrollPosition(
     ({ currPos }) => {
-      const newSize = Math.round((currPos.y * -1) / window.innerHeight) + 1
+      const newSize =
+        Math.round((currPos.y * -1) / (window.innerHeight * 0.7)) + 1
       if (newSize > 0 && !isReachingEnd && size < newSize) setSize(newSize)
     },
     [size]

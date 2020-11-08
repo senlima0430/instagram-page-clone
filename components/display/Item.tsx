@@ -1,15 +1,15 @@
 import { useState } from 'react'
+import { FiHeart, FiDownload } from 'react-icons/fi'
 import {
-  GridItem,
   Box,
-  Skeleton,
-  IconButton,
-  Image,
-  VStack,
   Flex,
   Text,
+  Image,
+  VStack,
+  GridItem,
+  Skeleton,
+  IconButton,
 } from '@chakra-ui/core'
-import { FiHeart, FiDownload } from 'react-icons/fi'
 
 type PropsType = {
   pic: Record<string, any>
@@ -40,7 +40,7 @@ export function DisplayItem({ pic }: PropsType) {
         background="rgba(0,0,0,0.25)"
       >
         <Flex h="100%" align="center" justify="center">
-          <FiHeart /> {pic.likes}
+          <FiHeart style={{ marginRight: '0.5em' }} /> {pic.likes}
           <a
             href={pic.links.download}
             target="_blank"
