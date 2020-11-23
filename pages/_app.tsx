@@ -1,5 +1,5 @@
 import { AppProps } from 'next/app'
-import { ChakraProvider, localStorageManager } from '@chakra-ui/core'
+import { ChakraProvider, localStorageManager } from '@chakra-ui/react'
 
 import '@/css/global.css'
 import { theme } from 'utils/theme'

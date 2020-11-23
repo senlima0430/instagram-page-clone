@@ -1,6 +1,5 @@
-import { Flex, IconButton } from "@chakra-ui/core";
-
-import { BsGrid3X3, BsTv, BsPersonSquare } from "react-icons/bs";
+import { Flex, IconButton } from '@chakra-ui/react'
+import { BsGrid3X3, BsTv, BsPersonSquare } from 'react-icons/bs'
 
 export function GenreGroup() {
   return (
@@ -35,5 +34,5 @@ export function GenreGroup() {
         icon={<BsPersonSquare />}
       />
     </Flex>
-  );
+  )
 }

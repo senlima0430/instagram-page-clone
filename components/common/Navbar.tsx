@@ -1,5 +1,5 @@
 import { useState, ChangeEvent } from 'react'
-import { Box, Flex, Input, Text, IconButton } from '@chakra-ui/core'
+import { Box, Flex, Text, Input, IconButton } from '@chakra-ui/react'
 import { AiOutlineCompass } from 'react-icons/ai'
 import { VscHome, VscHeart, VscAccount } from 'react-icons/vsc'
 

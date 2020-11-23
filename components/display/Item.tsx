@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import { FiHeart, FiDownload } from 'react-icons/fi'
+import Image from 'next/image'
 import {
   Box,
   Flex,
   Text,
-  Image,
   VStack,
   GridItem,
   Skeleton,
   IconButton,
-} from '@chakra-ui/core'
+} from '@chakra-ui/react'
 
 type PropsType = {
   pic: Record<string, any>
@@ -74,15 +74,15 @@ export function DisplayItem({ pic }: PropsType) {
       </VStack>
       <Box pb="100%" overflow="hidden">
         <Image
-          pos="absolute"
-          top={0}
-          left={0}
-          w="100%"
-          h="100%"
-          objectFit="cover"
+          layout="fill"
           src={pic.urls.small}
           alt={pic.description}
           onLoad={() => setLoaded(true)}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+          }}
         />
       </Box>
       {!isLoaded && (

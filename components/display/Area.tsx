@@ -1,31 +1,17 @@
-import dynamic from 'next/dynamic'
-import { useScrollPosition } from '@n8tb1t/use-scroll-position'
-import { Spinner, Box, SimpleGrid, GridItem, Skeleton } from '@chakra-ui/core'
+import { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
+import { Box, Spinner, GridItem, SimpleGrid } from '@chakra-ui/react'
 
 import { usePaginatePics } from 'hooks/useRequests'
-
-const DisplayItem = dynamic(
-  async () => await (await import('./Item')).DisplayItem,
-  {
-    loading: () => (
-      <GridItem w="100%" pos="relative" overflow="hidden">
-        <Skeleton pos="absolute" top="0" left="0" w="100%" h="100%" />
-      </GridItem>
-    ),
-  }
-)
+import { DisplayItem } from './Item'
 
 export function DisplayArea() {
   const { pages, error, size, setSize, isReachingEnd } = usePaginatePics()
+  const { ref, inView } = useInView({ threshold: 0.3 })
 
-  useScrollPosition(
-    ({ currPos }) => {
-      const newSize =
-        Math.round((currPos.y * -1) / (window.innerHeight * 0.7)) + 1
-      if (newSize > 0 && !isReachingEnd && size < newSize) setSize(newSize)
-    },
-    [size]
-  )
+  useEffect(() => {
+    if (inView && !isReachingEnd) setSize(size + 1)
+  }, [inView])
 
   if (error) return <p>Error occurred</p>
 
@@ -42,6 +28,9 @@ export function DisplayArea() {
       {pages.map(pics =>
         pics.results.map(item => <DisplayItem key={item.id} pic={item} />)
       )}
+      <GridItem ref={ref} pos="relative" w="100%" h="100%">
+        <Box pt="100%" />
+      </GridItem>
     </SimpleGrid>
   )
 }

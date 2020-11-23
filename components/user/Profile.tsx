@@ -1,13 +1,12 @@
 import {
-  Heading,
-  IconButton,
-  Button,
-  Flex,
   Box,
+  Flex,
   Image,
+  Button,
+  IconButton,
+  Heading,
   useMediaQuery,
-} from '@chakra-ui/core'
-import React from 'react'
+} from '@chakra-ui/react'
 import { MdPersonAdd } from 'react-icons/md'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { TiArrowSortedDown } from 'react-icons/ti'
@@ -63,15 +62,14 @@ export function UserProfile() {
             <Heading as="h2" fontWeight="300" fontSize="32px">
               senlima_sun
             </Heading>
-            {!isLargerThanMd && (
-              <IconButton
-                ml="5px"
-                fontSize="32px"
-                variant="unstyled"
-                aria-label="more action"
-                icon={<FiMoreHorizontal />}
-              />
-            )}
+            <IconButton
+              ml="5px"
+              fontSize="32px"
+              d={{ base: 'none', md: 'block' }}
+              variant="unstyled"
+              aria-label="more action"
+              icon={<FiMoreHorizontal />}
+            />
           </Flex>
 
           <Flex align="center" ml={{ base: 0, md: '1rem' }}>
@@ -93,15 +91,14 @@ export function UserProfile() {
               aria-label="other suggest account"
             />
 
-            {isLargerThanMd && (
-              <IconButton
-                ml="5px"
-                fontSize="32px"
-                variant="unstyled"
-                icon={<FiMoreHorizontal />}
-                aria-label="more action"
-              />
-            )}
+            <IconButton
+              ml="5px"
+              d={{ base: 'block', md: 'none' }}
+              fontSize="32px"
+              variant="unstyled"
+              icon={<FiMoreHorizontal />}
+              aria-label="more action"
+            />
           </Flex>
         </Flex>
 

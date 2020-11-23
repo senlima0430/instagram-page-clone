@@ -1,4 +1,4 @@
-import { Flex, Stack, Text } from '@chakra-ui/core'
+import { Text, Flex, Stack } from '@chakra-ui/react'
 
 export function InfoGroup() {
   return (

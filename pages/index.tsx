@@ -1,4 +1,4 @@
-import { Box } from '@chakra-ui/core'
+import { Box } from '@chakra-ui/react'
 
 import { NormalLayout } from 'components/layout/Normal'
 import { UserProfile } from 'components/user/Profile'

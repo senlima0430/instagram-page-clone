@@ -1,4 +1,4 @@
-import { Heading, Text, Box } from '@chakra-ui/core'
+import { Heading, Text, Box } from '@chakra-ui/react'
 
 export function UserDescription() {
   return (
