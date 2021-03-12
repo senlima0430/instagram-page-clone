@@ -1,10 +1,8 @@
 // You can include shared interfaces/types in a separate file
-// and then use them in any component by importing them. For
-// example, to import the interface below do:
-//
-// import User from 'path/to/interfaces';
+// and then use them in any component by importing them.
 
-export type User = {
-  id: number
-  name: string
+export type PicsResponseType = {
+  results: Array<Record<string, any>>
+  total: number
+  total_pages: number
 }

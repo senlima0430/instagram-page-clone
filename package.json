@@ -1,20 +1,22 @@
 {
   "name": "insta-clone",
   "version": "1.0.0",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "type-check": "tsc",
     "dev": "next dev",
+    "test": "jest",
     "start": "next start",
     "build": "next build",
     "build:analyze": "ANALYZE=true yarn build"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.0.1",
-    "@emotion/react": "^11.1.1",
-    "@emotion/styled": "^11.0.0",
+    "@chakra-ui/react": "^1.3.4",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
     "@next/bundle-analyzer": "^10.0.2",
-    "framer-motion": "^2.9.4",
+    "framer-motion": "^3.10.3",
     "isomorphic-unfetch": "^3.1.0",
     "next": "latest",
     "react": "^16.13.1",
@@ -24,11 +26,21 @@
     "swr": "^0.3.8"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@testing-library/dom": "^7.30.0",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/jest": "^26.0.20",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
     "@types/react-icons": "^3.0.0",
+    "babel-jest": "^26.6.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^26.6.3",
     "prettier": "^2.1.2",
+    "ts-jest": "^26.5.3",
     "typescript": "4.0"
   },
   "prettier": {
@@ -44,5 +56,30 @@
     "jsxSingleQuote": false,
     "jsxBracketSameLine": false
   },
-  "license": "MIT"
+  "jest": {
+    "testEnvironment": "jsdom",
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.json"
+      }
+    },
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/.next/",
+      "<rootDir>/node_modules/"
+    ],
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|cjs|ts|tsx)$",
+      "^.+\\.module\\.(css|sass|scss)$"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1",
+      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
+    }
+  }
 }

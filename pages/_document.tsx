@@ -4,32 +4,25 @@ import Document, {
   Main,
   NextScript,
   DocumentContext,
-} from "next/document";
+} from 'next/document'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    const initialProps = await Document.getInitialProps(ctx)
+    return { ...initialProps }
   }
 
   render() {
     return (
       <Html>
-        <Head>
-          <link
-            rel="preload"
-            href="/fonts/Cookie/Cookie-Regular.ttf"
-            as="font"
-            crossOrigin=""
-          />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }
 
-export default MyDocument;
+export default MyDocument
