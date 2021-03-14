@@ -7,6 +7,7 @@ import {
   GridItem,
   Skeleton,
   AspectRatio,
+  useColorModeValue,
 } from '@chakra-ui/react'
 
 type PropsType = {
@@ -17,13 +18,16 @@ export function Pic({ pic }: PropsType) {
   return (
     <GridItem pos="relative" w="100%" overflow="hidden">
       <Box pos="absolute" top={4} right={4} zIndex="docked">
-        <Tooltip
-          label={`${pic.likes} likes`}
-          aria-label="picture's like count"
-          placement="bottom-end"
-        >
+        <Tooltip label={`${pic.likes} likes`} placement="bottom-end">
           <span>
-            <Center w={6} h={6} bg="white" borderRadius="full">
+            <Center
+              w={6}
+              h={6}
+              bg="white"
+              color="gray.700"
+              borderRadius="full"
+              aria-label="picture's like count"
+            >
               <FiHeart />
             </Center>
           </span>

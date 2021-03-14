@@ -6,8 +6,8 @@ import { PicsResponseType } from '@/interfaces'
 
 const { NEXT_PUBLIC_UNSPLASH_ACCESS } = process.env
 
-export const usePaginatePics = () => {
-  const url = `${BASE_URL}/search/photos?query=mountain&per_page=12&client_id=${NEXT_PUBLIC_UNSPLASH_ACCESS}`
+export const usePaginatePics = (query: string) => {
+  const url = `${BASE_URL}/search/photos?query=${query}&per_page=12&client_id=${NEXT_PUBLIC_UNSPLASH_ACCESS}`
 
   const { data, error, size, setSize } = useSWRInfinite(
     index => `${url}&page=${index + 1}`,
@@ -25,5 +25,13 @@ export const usePaginatePics = () => {
 
   const isReachingEnd = isEmpty || data?.length === data?.[0]?.total_pages
 
-  return { pages, error, isLoadingMore, size, setSize, isReachingEnd }
+  return {
+    pages,
+    error,
+    size,
+    isEmpty,
+    setSize,
+    isReachingEnd,
+    isLoading: isLoadingMore || isInitial,
+  }
 }
