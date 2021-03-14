@@ -5,7 +5,7 @@ import { Pic } from '../Pic'
 
 const data = {
   likes: 100,
-  description: 'picture for test',
+  alt_description: 'picture for test',
   urls: {
     small: 'http://tny.im/ocl',
   },

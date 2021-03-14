@@ -44,7 +44,7 @@ export function Pic({ pic }: PropsType) {
           <Image
             objectFit="fill"
             src={pic.urls.small}
-            alt={pic.description}
+            alt={pic.alt_description}
             fallback={<Skeleton />}
           />
         </AspectRatio>
