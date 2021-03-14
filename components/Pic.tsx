@@ -7,7 +7,6 @@ import {
   GridItem,
   Skeleton,
   AspectRatio,
-  useColorModeValue,
 } from '@chakra-ui/react'
 
 type PropsType = {
