@@ -15,7 +15,12 @@ type PropsType = {
 
 export function Pic({ pic }: PropsType) {
   return (
-    <GridItem pos="relative" w="100%" overflow="hidden">
+    <GridItem
+      pos="relative"
+      w="100%"
+      overflow="hidden"
+      data-testid="pic-item"
+    >
       <Box pos="absolute" top={4} right={4} zIndex="docked">
         <Tooltip label={`${pic.likes} likes`} placement="bottom-end">
           <span>

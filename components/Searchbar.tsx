@@ -15,20 +15,13 @@ type PropsType = {
 }
 
 export function Searchbar({ loading, submitFunc }: PropsType) {
-  const sender = useRef<NodeJS.Timeout | null>(null)
+  const sender = useRef<number | null>(null)
   const [keyword, setKeyword] = useState('mountain')
-
-  useEffect(() => {
-    sender.current = setTimeout(() => submitFunc(keyword), 3000)
-    return () => {
-      if (sender.current) clearTimeout(sender.current)
-    }
-  }, [])
 
   useEffect(() => {
     if (sender.current) clearTimeout(sender.current)
     if (keyword.length >= 3) {
-      sender.current = setTimeout(() => submitFunc(keyword), 3000)
+      sender.current = window.setTimeout(() => submitFunc(keyword), 3000)
     }
   }, [keyword])
 
@@ -47,7 +40,11 @@ export function Searchbar({ loading, submitFunc }: PropsType) {
           aria-label="search picture"
           placeholder="Input some words..."
         />
-        {loading && <InputRightElement children={<Spinner size="sm" />} />}
+        {loading && (
+          <InputRightElement
+            children={<Spinner size="sm" aria-label="loading results" />}
+          />
+        )}
       </InputGroup>
       <FormHelperText>At least type 3 chars</FormHelperText>
     </FormControl>

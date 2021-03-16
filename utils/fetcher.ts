@@ -1,10 +1,11 @@
-class FetcherError extends Error {
+import { CustomError } from 'ts-custom-error'
+
+export class FetcherError extends CustomError {
   info?: any
   status?: number
 
-  constructor(message: string) {
+  public constructor(message?: string) {
     super(message)
-    this.name = 'ValidationError'
   }
 }
 

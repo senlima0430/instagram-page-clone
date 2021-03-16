@@ -32,6 +32,7 @@ export const usePaginatePics = (query: string) => {
     isEmpty,
     setSize,
     isReachingEnd,
+    isInitial,
     isLoading: isLoadingMore || isInitial,
   }
 }

@@ -14,7 +14,7 @@ export function PicLoad({ loadFunc }: PropsType) {
   }, [inView])
 
   return (
-    <GridItem ref={ref} w="100%">
+    <GridItem ref={ref} w="100%" aria-label="load more">
       <Box as={Skeleton} pt="100%" />
     </GridItem>
   )
