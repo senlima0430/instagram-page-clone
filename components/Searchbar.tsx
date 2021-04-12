@@ -1,4 +1,7 @@
-import { useRef, useState, useEffect, ChangeEventHandler } from 'react'
+import React from 'react'
+import { Observable } from 'rxjs'
+import { useEventCallback } from 'rxjs-hooks'
+import { tap, map, filter, debounceTime } from 'rxjs/operators'
 import {
   Input,
   Spinner,
@@ -15,19 +18,16 @@ type PropsType = {
 }
 
 export function Searchbar({ loading, submitFunc }: PropsType) {
-  const sender = useRef<number | null>(null)
-  const [keyword, setKeyword] = useState('mountain')
-
-  useEffect(() => {
-    if (sender.current) clearTimeout(sender.current)
-    if (keyword.length >= 3) {
-      sender.current = window.setTimeout(() => submitFunc(keyword), 3000)
-    }
-  }, [keyword])
-
-  const handleKeyword: ChangeEventHandler<HTMLInputElement> = e => {
-    setKeyword(e.target.value)
-  }
+  const [changeCallback] = useEventCallback(
+    (event$: Observable<React.SyntheticEvent<HTMLInputElement>>) =>
+      event$.pipe(
+        map(event => event.currentTarget.value),
+        filter(val => val.length >= 3),
+        debounceTime(750),
+        tap(keyword => submitFunc(keyword))
+      ),
+    ''
+  )
 
   return (
     <FormControl>
@@ -35,8 +35,8 @@ export function Searchbar({ loading, submitFunc }: PropsType) {
       <InputGroup size="sm">
         <Input
           id="keyword"
-          value={keyword}
-          onChange={handleKeyword}
+          defaultValue=""
+          onChange={changeCallback}
           aria-label="search picture"
           placeholder="Input some words..."
         />

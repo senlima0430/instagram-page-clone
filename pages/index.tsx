@@ -8,7 +8,7 @@ import { PicsList } from '@/components/PicsList'
 import { Searchbar } from '@/components/Searchbar'
 
 export default function Index() {
-  const [query, setQuery] = useState('mountain')
+  const [query, setQuery] = useState('')
   const {
     pages,
     error,
